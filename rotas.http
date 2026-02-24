@@ -1,0 +1,11 @@
+GET http://localhost:3333/itens
+
+###
+
+POST http://localhost:3333/itens
+Content-Type: application/json
+
+{
+    "nome": "Eros",
+    "preco": 7.0
+}
