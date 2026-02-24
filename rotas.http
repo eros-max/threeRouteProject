@@ -9,3 +9,7 @@ Content-Type: application/json
     "nome": "Eros",
     "preco": 7.0
 }
+
+###
+
+DELETE http://localhost:3333/itens

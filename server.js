@@ -11,8 +11,6 @@ app.use(cors({
     origin: "*"
 }))
 
-const {DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME} = process.env
-
 app.get("/itens", (req, res) => {
     const showItem = "SELECT nome, preco FROM erosmax_itens"
 
@@ -22,18 +20,18 @@ app.get("/itens", (req, res) => {
             return
         }
 
-        response.json(users)
+        res.json(users)
     })
 })
 
 
 app.post('/itens', (req, res) => {
 
-    const {nome, preco} = request.body.item
+    const {nome, preco} = req.body
 
     const addItem = `
     INSERT INTO erosmax_itens(nome, preco)
-    VALUES (?, ?, ?, ?)
+    VALUES (?, ?)
     `
 
     database.query(addItem, [nome, preco], (error) => {
@@ -42,7 +40,7 @@ app.post('/itens', (req, res) => {
             return
         }
 
-        response.status(201).json({ message: "Usuário Cadastrado com Sucesso!"})
+        res.status(201).json({ message: "Usuário Cadastrado com Sucesso!"})
     })
 })
 
@@ -68,9 +66,9 @@ app.listen(3333, () => {
 
 
 const database = mysql.createPool({
-    database: DATABASE_NAME,
-    host: DATABASE_HOST,
-    user: DATABASE_USER,
-    password: DATABASE_PASSWORD,
+    database: "web_03mc",
+    host: "benserverplex.ddns.net",
+    user: "alunos",
+    password: "senhaAlunos",
     connectionLimit: 10
 })
