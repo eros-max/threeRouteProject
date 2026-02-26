@@ -12,7 +12,7 @@ app.use(cors({
 }))
 
 app.get("/itens", (req, res) => {
-    const showItem = "SELECT nome, preco FROM erosmax_itens"
+    const showItem = "SELECT nome, preco, id FROM erosmax_itens"
 
     database.query(showItem, (error, users) => {
         if (error) {
@@ -45,12 +45,11 @@ app.post('/itens', (req, res) => {
 })
 
 app.delete('/itens/:id', (req, res) => {
-    console.log(req.params.id)
     const { id } = req.params 
 
     const query = 'DELETE FROM erosmax_itens WHERE id = ?'
 
-    mysql.query(query, [id], (err, results) => {
+    database.query(query, [id], (err, results) => {
             if (err) {
                 console.error(err)
                 return res.status(500).json({ error: 'Erro ao deletar produto.' })

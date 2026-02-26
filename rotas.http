@@ -6,10 +6,10 @@ POST http://localhost:3333/itens
 Content-Type: application/json
 
 {
-    "nome": "Eros",
-    "preco": 7.0
+    "nome": "Jovem",
+    "preco": 15.0
 }
 
 ###
 
-DELETE http://localhost:3333/itens
+DELETE http://localhost:3333/itens/3
